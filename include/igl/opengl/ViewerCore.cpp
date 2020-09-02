@@ -450,7 +450,7 @@ IGL_INLINE igl::opengl::ViewerCore::ViewerCore()
   viewport.setZero();
 }
 
-IGL_INLINE igl::opengl::ViewerCore::ViewerCore(igl::opengl::VRApplication *VRapp)
+IGL_INLINE igl::opengl::ViewerCore::ViewerCore(igl::openvr::VRApplication *VRapp)
 {
     vr = true;
     this->VRapp = VRapp;

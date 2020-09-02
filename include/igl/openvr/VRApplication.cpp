@@ -1,4 +1,5 @@
 #include "VRApplication.h"
+#include <igl/opengl/create_shader_program.h>
 #include <string>
 
 namespace igl
@@ -424,7 +425,7 @@ namespace igl
       }
       setupCompanionWindow();
 
-      create_shader_program(
+      igl::opengl::create_shader_program(
           // vertex shader
           "#version 410\n"
           "uniform mat4 view;\n"
@@ -545,7 +546,7 @@ namespace igl
       glBindBuffer(GL_ARRAY_BUFFER, 0);
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-      create_shader_program(
+      igl::opengl::create_shader_program(
           // vertex shader
           "#version 410 core\n"
           "layout(location = 0) in vec4 position;\n"

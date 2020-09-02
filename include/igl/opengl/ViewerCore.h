@@ -34,9 +34,9 @@ class ViewerCore
 public:
     bool vr = false;
 
-    VRApplication *VRapp;
+    igl::openvr::VRApplication *VRapp;
 
-    IGL_INLINE ViewerCore(VRApplication*);
+    IGL_INLINE ViewerCore(igl::openvr::VRApplication*);
 
   IGL_INLINE ViewerCore();
 
