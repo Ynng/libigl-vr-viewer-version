@@ -485,8 +485,8 @@ if(LIBIGL_WITH_OPENVR)
     add_subdirectory("${OPENVR_DIR}" "openvr")
   endif()
   compile_igl_module("openvr")
-  target_link_libraries(igl_openvr ${IGL_SCOPE} openvr)
-  target_include_directories(igl_openvr ${IGL_SCOPE} ${OPENVR_DIR}/headers)
+  target_link_libraries(igl_openvr ${IGL_SCOPE} openvr_api64)
+  target_include_directories(igl_openvr ${IGL_SCOPE} ${OPENVR_DIR})
 endif()
 
 ################################################################################
