@@ -482,11 +482,36 @@ if(LIBIGL_WITH_OPENVR)
   set(OPENVR_DIR "${LIBIGL_EXTERNAL}/openvr")
   if(NOT TARGET openvr)
     igl_download_openvr()
-    add_subdirectory("${OPENVR_DIR}" "openvr")
+    # add_subdirectory("${OPENVR_DIR}" "openvr")
   endif()
   compile_igl_module("openvr")
-  target_link_libraries(igl_openvr ${IGL_SCOPE} openvr_api64)
-  target_include_directories(igl_openvr ${IGL_SCOPE} ${OPENVR_DIR})
+
+  if(NOT PLATFORM)
+    if(CMAKE_SIZEOF_VOID_P MATCHES 8)
+      set(PLATFORM 64)
+    else()
+      set(PLATFORM 32)
+    endif()
+  endif()
+  
+  set(WINDOWS_PATH_SUFFIXES win${PLATFORM} Win${PLATFORM} x${PLATFORM})
+
+  find_library(OPENVR_LIBRARIES
+    NAMES
+      openvr_api
+    PATHS
+      ${OPENVR_DIR}/bin
+      ${OPENVR_DIR}/lib
+    PATH_SUFFIXES
+      osx32
+      linux64
+      ${WINDOWS_PATH_SUFFIXES}
+    NO_DEFAULT_PATH
+    NO_CMAKE_FIND_ROOT_PATH
+  )
+  
+  target_link_libraries(igl_openvr ${IGL_SCOPE} ${OPENVR_LIBRARIES})
+  target_include_directories(igl_openvr ${IGL_SCOPE} ${OPENVR_DIR}/headers)
 endif()
 
 ################################################################################

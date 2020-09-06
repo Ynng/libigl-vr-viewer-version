@@ -1,6 +1,7 @@
 #include "VRApplication.h"
 #include <igl/opengl/create_shader_program.h>
 #include <string>
+#include <openvr.h>
 
 namespace igl
 {

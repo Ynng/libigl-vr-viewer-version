@@ -1,10 +1,10 @@
 
 #ifndef IGL_OPENVR_VRAPPLICATION_H
 #define IGL_OPENVR_VRAPPLICATION_H
-#include <openvr.h>
 #include "../igl_inline.h"
 #include <Eigen/Core>
 #include <Eigen/Geometry>
+#include <openvr.h>
 
 
 namespace igl
