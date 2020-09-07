@@ -17,7 +17,7 @@
 
 #include "glfw/Viewer.h"
 
-#include <igl/openvr/VRApplication.h>
+//#include <igl/openvr/VRApplication.h>
 
 namespace igl
 {
@@ -34,9 +34,9 @@ class ViewerCore
 public:
     bool vr = false;
 
-    igl::openvr::VRApplication *VRapp;
+    //igl::openvr::VRApplication *VRapp;
 
-    IGL_INLINE ViewerCore(igl::openvr::VRApplication*);
+    //IGL_INLINE ViewerCore(igl::openvr::VRApplication*);
 
   IGL_INLINE ViewerCore();
 
@@ -83,7 +83,7 @@ public:
   // Draw everything
   //
   // data cannot be const because it is being set to "clean"
-  IGL_INLINE void drawVR(ViewerData& data);
+  //IGL_INLINE void drawVR(ViewerData& data);
   IGL_INLINE void draw(ViewerData& data, bool update_matrices = true);
   IGL_INLINE void draw_buffer(
     ViewerData& data,

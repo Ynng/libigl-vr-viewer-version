@@ -926,7 +926,7 @@ namespace glfw
         if (mesh.is_visible & core.id)
         {
             if (core.vr) {
-                core.drawVR(mesh);
+                //core.drawVR(mesh);
             }
             else {
                 core.draw(mesh);
@@ -1145,20 +1145,20 @@ namespace glfw
     return core_list.back().id;
   }
 
-  IGL_INLINE int Viewer::append_vrcore(igl::openvr::VRApplication* VRapp, Eigen::Vector4f viewport)
-  {
-      core_list.emplace_back(ViewerCore(VRapp));
-      core_list.back().viewport = viewport;
-      core_list.back().id = next_core_id;
-      next_core_id <<= 1;
-      for (auto& data : data_list)
-      {
-          data.set_visible(true, core_list.back().id);
-          data.copy_options(core(), core_list.back());
-      }
-      selected_core_index = core_list.size() - 1;
-      return core_list.back().id;
-  }
+  //IGL_INLINE int Viewer::append_vrcore(igl::openvr::VRApplication* VRapp, Eigen::Vector4f viewport)
+  //{
+  //    core_list.emplace_back(ViewerCore(VRapp));
+  //    core_list.back().viewport = viewport;
+  //    core_list.back().id = next_core_id;
+  //    next_core_id <<= 1;
+  //    for (auto& data : data_list)
+  //    {
+  //        data.set_visible(true, core_list.back().id);
+  //        data.copy_options(core(), core_list.back());
+  //    }
+  //    selected_core_index = core_list.size() - 1;
+  //    return core_list.back().id;
+  //}
 
 } // end namespace
 

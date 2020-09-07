@@ -25,7 +25,7 @@
 #include <string>
 #include <cstdint>
 
-#include <igl/openvr/VRApplication.h>
+//#include <igl/openvr/VRApplication.h>
 
 #define IGL_MOD_SHIFT           0x0001
 #define IGL_MOD_CONTROL         0x0002
@@ -152,7 +152,7 @@ namespace glfw
     IGL_INLINE int append_core(Eigen::Vector4f viewport, bool append_empty = false);
 
 
-    IGL_INLINE int append_vrcore(igl::openvr::VRApplication*, Eigen::Vector4f viewport);
+    //IGL_INLINE int append_vrcore(igl::openvr::VRApplication*, Eigen::Vector4f viewport);
 
 
     // Erase a viewport
