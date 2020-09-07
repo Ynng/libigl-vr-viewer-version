@@ -33,7 +33,7 @@ igl_folder_targets("ThirdParty"
     tetgen
     tinyxml2
     triangle
-    openvr
+    openvr_api64
 )
 
 igl_folder_targets("Libigl"

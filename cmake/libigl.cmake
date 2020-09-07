@@ -512,6 +512,7 @@ if(LIBIGL_WITH_OPENVR)
   
   target_link_libraries(igl_openvr ${IGL_SCOPE} ${OPENVR_LIBRARIES})
   target_include_directories(igl_openvr ${IGL_SCOPE} ${OPENVR_DIR}/headers)
+  include_directories(${OPENVR_DIR}/headers)
 endif()
 
 ################################################################################
