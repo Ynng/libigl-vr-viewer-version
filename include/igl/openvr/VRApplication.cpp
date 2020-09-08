@@ -1,6 +1,7 @@
 #include "VRApplication.h"
-#include <igl/opengl/create_shader_program.h>
+//#include <igl/opengl/create_shader_program.h>
 #include <string>
+#include <iostream>
 
 namespace igl
 {
@@ -292,27 +293,27 @@ namespace igl
       }
       if (companionWindowProgramID)
       {
-        glDeleteProgram(companionWindowProgramID);
+        //glDeleteProgram(companionWindowProgramID);
       }
 
-      //delete leftEyeDesc;
-      glDeleteRenderbuffers(1, &leftEyeDesc.depthBufferId);
-      glDeleteTextures(1, &leftEyeDesc.renderTextureId);
-      glDeleteFramebuffers(1, &leftEyeDesc.renderFramebufferId);
-      glDeleteTextures(1, &leftEyeDesc.resolveTextureId);
-      glDeleteFramebuffers(1, &leftEyeDesc.resolveFramebufferId);
+      ////delete leftEyeDesc;
+      //glDeleteRenderbuffers(1, &leftEyeDesc.depthBufferId);
+      //glDeleteTextures(1, &leftEyeDesc.renderTextureId);
+      //glDeleteFramebuffers(1, &leftEyeDesc.renderFramebufferId);
+      //glDeleteTextures(1, &leftEyeDesc.resolveTextureId);
+      //glDeleteFramebuffers(1, &leftEyeDesc.resolveFramebufferId);
 
-      //delete rightEyeDesc;
-      glDeleteRenderbuffers(1, &rightEyeDesc.depthBufferId);
-      glDeleteTextures(1, &rightEyeDesc.renderTextureId);
-      glDeleteFramebuffers(1, &rightEyeDesc.renderFramebufferId);
-      glDeleteTextures(1, &rightEyeDesc.resolveTextureId);
-      glDeleteFramebuffers(1, &rightEyeDesc.resolveFramebufferId);
+      ////delete rightEyeDesc;
+      //glDeleteRenderbuffers(1, &rightEyeDesc.depthBufferId);
+      //glDeleteTextures(1, &rightEyeDesc.renderTextureId);
+      //glDeleteFramebuffers(1, &rightEyeDesc.renderFramebufferId);
+      //glDeleteTextures(1, &rightEyeDesc.resolveTextureId);
+      //glDeleteFramebuffers(1, &rightEyeDesc.resolveFramebufferId);
 
-      if (companionWindowVAO != 0)
-      {
-        glDeleteVertexArrays(1, &companionWindowVAO);
-      }
+      //if (companionWindowVAO != 0)
+      //{
+      //  glDeleteVertexArrays(1, &companionWindowVAO);
+      //}
     }
 
     IGL_INLINE int VRApplication::getHmdWidth()
@@ -327,53 +328,53 @@ namespace igl
 
     IGL_INLINE void VRApplication::updateCompanionWindow(Eigen::Vector4f viewport)
     {
-      //companion window
-      glDisable(GL_DEPTH_TEST);
-      glViewport(viewport(0), viewport(1), viewport(2), viewport(3));
+      ////companion window
+      //glDisable(GL_DEPTH_TEST);
+      //glViewport(viewport(0), viewport(1), viewport(2), viewport(3));
 
-      glBindVertexArray(companionWindowVAO);
-      glUseProgram(companionWindowProgramID);
+      //glBindVertexArray(companionWindowVAO);
+      //glUseProgram(companionWindowProgramID);
 
-      // render left eye (first half of index array )
-      glBindTexture(GL_TEXTURE_2D, leftEyeDesc.resolveTextureId);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-      glDrawElements(GL_TRIANGLES, companionWindowIndexSize / 2, GL_UNSIGNED_SHORT, 0);
+      //// render left eye (first half of index array )
+      //glBindTexture(GL_TEXTURE_2D, leftEyeDesc.resolveTextureId);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      //glDrawElements(GL_TRIANGLES, companionWindowIndexSize / 2, GL_UNSIGNED_SHORT, 0);
 
-      // render right eye (second half of index array )
-      glBindTexture(GL_TEXTURE_2D, rightEyeDesc.resolveTextureId);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-      glDrawElements(GL_TRIANGLES, companionWindowIndexSize / 2, GL_UNSIGNED_SHORT, (const void *)(uintptr_t)(companionWindowIndexSize));
+      //// render right eye (second half of index array )
+      //glBindTexture(GL_TEXTURE_2D, rightEyeDesc.resolveTextureId);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      //glDrawElements(GL_TRIANGLES, companionWindowIndexSize / 2, GL_UNSIGNED_SHORT, (const void *)(uintptr_t)(companionWindowIndexSize));
 
-      glBindVertexArray(0);
-      glUseProgram(0);
+      //glBindVertexArray(0);
+      //glUseProgram(0);
     }
 
     IGL_INLINE void VRApplication::predraw(vr::EVREye eye)
     {
 
-      glEnable(GL_MULTISAMPLE);
+      //glEnable(GL_MULTISAMPLE);
 
-      if (eye == vr::EVREye::Eye_Left)
-        glBindFramebuffer(GL_FRAMEBUFFER, leftEyeDesc.renderFramebufferId);
-      else
-        glBindFramebuffer(GL_FRAMEBUFFER, rightEyeDesc.renderFramebufferId);
-      glClearColor(0.3,
-                   0.3,
-                   0.5,
-                   1.0);
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      //if (eye == vr::EVREye::Eye_Left)
+      //  glBindFramebuffer(GL_FRAMEBUFFER, leftEyeDesc.renderFramebufferId);
+      //else
+      //  glBindFramebuffer(GL_FRAMEBUFFER, rightEyeDesc.renderFramebufferId);
+      //glClearColor(0.3,
+      //             0.3,
+      //             0.5,
+      //             1.0);
+      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     IGL_INLINE void VRApplication::postdraw(vr::EVREye eye)
     {
 
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      /*glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
       glDisable(GL_MULTISAMPLE);
 
@@ -393,7 +394,7 @@ namespace igl
                         GL_LINEAR);
 
       glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);*/
     }
 
     IGL_INLINE void VRApplication::printstuff()
@@ -406,52 +407,52 @@ namespace igl
 
     IGL_INLINE void VRApplication::initGl()
     {
-      if (!createFrameBuffer(leftEyeDesc))
-      {
-        printf("Error creating frame buffers for left eye");
-      }
-      else
-      {
-        printf("Success creating frame buffers for left eye");
-      }
+      //if (!createFrameBuffer(leftEyeDesc))
+      //{
+      //  printf("Error creating frame buffers for left eye");
+      //}
+      //else
+      //{
+      //  printf("Success creating frame buffers for left eye");
+      //}
 
-      if (!createFrameBuffer(rightEyeDesc))
-      {
-        printf("Error creating frame buffers for right eye");
-      }
-      else
-      {
-        printf("Success creating frame buffers for right eye");
-      }
-      setupCompanionWindow();
+      //if (!createFrameBuffer(rightEyeDesc))
+      //{
+      //  printf("Error creating frame buffers for right eye");
+      //}
+      //else
+      //{
+      //  printf("Success creating frame buffers for right eye");
+      //}
+      //setupCompanionWindow();
 
-      igl::opengl::create_shader_program(
-          // vertex shader
-          "#version 410\n"
-          "uniform mat4 view;\n"
-          "uniform mat4 proj;\n"
-          "layout(location = 0) in vec4 position;\n"
-          "layout(location = 1) in vec3 v3ColorIn;\n"
-          "out vec3 position_eye;\n"
-          "out vec4 v4Color;\n"
-          "void main()\n"
-          "{\n"
-          "   position_eye = vec3 (view * position);\n"
-          "	gl_Position = proj * vec4(position_eye, 1.0);\n"
-          "	v4Color.xyz = v3ColorIn;\n"
-          "	v4Color.a = 1.0;\n"
-          "}\n",
+      //igl::opengl::create_shader_program(
+      //    // vertex shader
+      //    "#version 410\n"
+      //    "uniform mat4 view;\n"
+      //    "uniform mat4 proj;\n"
+      //    "layout(location = 0) in vec4 position;\n"
+      //    "layout(location = 1) in vec3 v3ColorIn;\n"
+      //    "out vec3 position_eye;\n"
+      //    "out vec4 v4Color;\n"
+      //    "void main()\n"
+      //    "{\n"
+      //    "   position_eye = vec3 (view * position);\n"
+      //    "	gl_Position = proj * vec4(position_eye, 1.0);\n"
+      //    "	v4Color.xyz = v3ColorIn;\n"
+      //    "	v4Color.a = 1.0;\n"
+      //    "}\n",
 
-          // fragment shader
-          "#version 410\n"
-          "in vec4 v4Color;\n"
-          "out vec4 outputColor;\n"
-          "void main()\n"
-          "{\n"
-          "   outputColor = v4Color;\n"
-          "}\n",
-          {},
-          controllerTransformProgramID);
+      //    // fragment shader
+      //    "#version 410\n"
+      //    "in vec4 v4Color;\n"
+      //    "out vec4 outputColor;\n"
+      //    "void main()\n"
+      //    "{\n"
+      //    "   outputColor = v4Color;\n"
+      //    "}\n",
+      //    {},
+      //    controllerTransformProgramID);
 
       //controllerMatrixLocation = glGetUniformLocation(controllerTransformProgramID, "matrix");
       //if (controllerMatrixLocation == -1)
@@ -462,40 +463,40 @@ namespace igl
 
     IGL_INLINE bool VRApplication::createFrameBuffer(FramebufferDesc &framebufferDesc)
     {
-      printf("Creating framebuffers\n");
+      //glGenFramebuffers(1, &framebufferDesc.renderFramebufferId);
+      //glBindFramebuffer(GL_FRAMEBUFFER, framebufferDesc.renderFramebufferId);
 
-      glGenFramebuffers(1, &framebufferDesc.renderFramebufferId);
-      glBindFramebuffer(GL_FRAMEBUFFER, framebufferDesc.renderFramebufferId);
+      //// create a multisampled color attachment texture
+      //glGenTextures(1, &framebufferDesc.renderTextureId);
+      //glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, framebufferDesc.renderTextureId);
+      //glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, 4, GL_RGBA, hmdWidth, hmdHeight, GL_TRUE);
+      //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, framebufferDesc.renderTextureId, 0);
 
-      // create a multisampled color attachment texture
-      glGenTextures(1, &framebufferDesc.renderTextureId);
-      glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, framebufferDesc.renderTextureId);
-      glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, 4, GL_RGBA, hmdWidth, hmdHeight, GL_TRUE);
-      glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, framebufferDesc.renderTextureId, 0);
+      //// create a (also multisampled) renderbuffer object for depth and stencil attachments
+      //glGenRenderbuffers(1, &framebufferDesc.depthBufferId);
+      //glBindRenderbuffer(GL_RENDERBUFFER, framebufferDesc.depthBufferId);
+      //glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, hmdWidth, hmdHeight);
+      //glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, framebufferDesc.depthBufferId);
 
-      // create a (also multisampled) renderbuffer object for depth and stencil attachments
-      glGenRenderbuffers(1, &framebufferDesc.depthBufferId);
-      glBindRenderbuffer(GL_RENDERBUFFER, framebufferDesc.depthBufferId);
-      glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, hmdWidth, hmdHeight);
-      glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, framebufferDesc.depthBufferId);
+      //glGenFramebuffers(1, &framebufferDesc.resolveFramebufferId);
+      //glBindFramebuffer(GL_FRAMEBUFFER, framebufferDesc.resolveFramebufferId);
 
-      glGenFramebuffers(1, &framebufferDesc.resolveFramebufferId);
-      glBindFramebuffer(GL_FRAMEBUFFER, framebufferDesc.resolveFramebufferId);
+      //glGenTextures(1, &framebufferDesc.resolveTextureId);
+      //glBindTexture(GL_TEXTURE_2D, framebufferDesc.resolveTextureId);
+      //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, hmdWidth, hmdHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+      //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, framebufferDesc.resolveTextureId, 0);
 
-      glGenTextures(1, &framebufferDesc.resolveTextureId);
-      glBindTexture(GL_TEXTURE_2D, framebufferDesc.resolveTextureId);
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, hmdWidth, hmdHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
-      glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, framebufferDesc.resolveTextureId, 0);
+      //GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+      //if (status != GL_FRAMEBUFFER_COMPLETE)
+      //{
+      //  return false;
+      //}
 
-      GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-      if (status != GL_FRAMEBUFFER_COMPLETE)
-      {
-        return false;
-      }
+      //glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      //Below should be kept commented
       //glBindRenderbuffer(GL_RENDERBUFFER, 0);
       //glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
 
@@ -504,188 +505,191 @@ namespace igl
 
     IGL_INLINE void VRApplication::setupCompanionWindow()
     {
-      std::vector<VertexDataWindow> vVerts;
+        return;
+      //std::vector<VertexDataWindow> vVerts;
 
-      // left eye verts
-      vVerts.push_back(VertexDataWindow(Vector2(-1, -1), Vector2(0, 0)));
-      vVerts.push_back(VertexDataWindow(Vector2(0, -1), Vector2(1, 0)));
-      vVerts.push_back(VertexDataWindow(Vector2(-1, 1), Vector2(0, 1)));
-      vVerts.push_back(VertexDataWindow(Vector2(0, 1), Vector2(1, 1)));
+      //// left eye verts
+      //vVerts.push_back(VertexDataWindow(Vector2(-1, -1), Vector2(0, 0)));
+      //vVerts.push_back(VertexDataWindow(Vector2(0, -1), Vector2(1, 0)));
+      //vVerts.push_back(VertexDataWindow(Vector2(-1, 1), Vector2(0, 1)));
+      //vVerts.push_back(VertexDataWindow(Vector2(0, 1), Vector2(1, 1)));
 
-      // right eye verts
-      vVerts.push_back(VertexDataWindow(Vector2(0, -1), Vector2(0, 0)));
-      vVerts.push_back(VertexDataWindow(Vector2(1, -1), Vector2(1, 0)));
-      vVerts.push_back(VertexDataWindow(Vector2(0, 1), Vector2(0, 1)));
-      vVerts.push_back(VertexDataWindow(Vector2(1, 1), Vector2(1, 1)));
+      //// right eye verts
+      //vVerts.push_back(VertexDataWindow(Vector2(0, -1), Vector2(0, 0)));
+      //vVerts.push_back(VertexDataWindow(Vector2(1, -1), Vector2(1, 0)));
+      //vVerts.push_back(VertexDataWindow(Vector2(0, 1), Vector2(0, 1)));
+      //vVerts.push_back(VertexDataWindow(Vector2(1, 1), Vector2(1, 1)));
 
-      GLushort vIndices[] = {0, 1, 3, 0, 3, 2, 4, 5, 7, 4, 7, 6};
-      companionWindowIndexSize = _countof(vIndices);
+      //GLushort vIndices[] = {0, 1, 3, 0, 3, 2, 4, 5, 7, 4, 7, 6};
+      //companionWindowIndexSize = _countof(vIndices);
 
-      glGenVertexArrays(1, &companionWindowVAO);
-      glBindVertexArray(companionWindowVAO);
+      //glGenVertexArrays(1, &companionWindowVAO);
+      //glBindVertexArray(companionWindowVAO);
 
-      glGenBuffers(1, &companionWindowIDVertBuffer);
-      glBindBuffer(GL_ARRAY_BUFFER, companionWindowIDVertBuffer);
-      glBufferData(GL_ARRAY_BUFFER, vVerts.size() * sizeof(VertexDataWindow), &vVerts[0], GL_STATIC_DRAW);
+      //glGenBuffers(1, &companionWindowIDVertBuffer);
+      //glBindBuffer(GL_ARRAY_BUFFER, companionWindowIDVertBuffer);
+      //glBufferData(GL_ARRAY_BUFFER, vVerts.size() * sizeof(VertexDataWindow), &vVerts[0], GL_STATIC_DRAW);
 
-      glGenBuffers(1, &companionWindowIDIndexBuffer);
-      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, companionWindowIDIndexBuffer);
-      glBufferData(GL_ELEMENT_ARRAY_BUFFER, companionWindowIndexSize * sizeof(GLushort), &vIndices[0], GL_STATIC_DRAW);
+      //glGenBuffers(1, &companionWindowIDIndexBuffer);
+      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, companionWindowIDIndexBuffer);
+      //glBufferData(GL_ELEMENT_ARRAY_BUFFER, companionWindowIndexSize * sizeof(GLushort), &vIndices[0], GL_STATIC_DRAW);
 
-      glEnableVertexAttribArray(0);
-      glVertexAttribPointer(0, 2, GL_FLOAT, GL_TRUE, sizeof(VertexDataWindow), (void *)offsetof(VertexDataWindow, position));
+      //glEnableVertexAttribArray(0);
+      //glVertexAttribPointer(0, 2, GL_FLOAT, GL_TRUE, sizeof(VertexDataWindow), (void *)offsetof(VertexDataWindow, position));
 
-      glEnableVertexAttribArray(1);
-      glVertexAttribPointer(1, 2, GL_FLOAT, GL_TRUE, sizeof(VertexDataWindow), (void *)offsetof(VertexDataWindow, texCoord));
+      //glEnableVertexAttribArray(1);
+      //glVertexAttribPointer(1, 2, GL_FLOAT, GL_TRUE, sizeof(VertexDataWindow), (void *)offsetof(VertexDataWindow, texCoord));
 
-      glBindVertexArray(0);
+      //glBindVertexArray(0);
 
-      glDisableVertexAttribArray(0);
-      glDisableVertexAttribArray(1);
+      //glDisableVertexAttribArray(0);
+      //glDisableVertexAttribArray(1);
 
-      glBindBuffer(GL_ARRAY_BUFFER, 0);
-      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+      //glBindBuffer(GL_ARRAY_BUFFER, 0);
+      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-      igl::opengl::create_shader_program(
-          // vertex shader
-          "#version 410 core\n"
-          "layout(location = 0) in vec4 position;\n"
-          "layout(location = 1) in vec2 v2UVIn;\n"
-          "noperspective out vec2 v2UV;\n"
-          "void main()\n"
-          "{\n"
-          "	v2UV = v2UVIn;\n"
-          "	gl_Position = position;\n"
-          "}\n",
+      //igl::opengl::create_shader_program(
+      //    // vertex shader
+      //    "#version 410 core\n"
+      //    "layout(location = 0) in vec4 position;\n"
+      //    "layout(location = 1) in vec2 v2UVIn;\n"
+      //    "noperspective out vec2 v2UV;\n"
+      //    "void main()\n"
+      //    "{\n"
+      //    "	v2UV = v2UVIn;\n"
+      //    "	gl_Position = position;\n"
+      //    "}\n",
 
-          // fragment shader
-          "#version 410 core\n"
-          "uniform sampler2D mytexture;\n"
-          "noperspective in vec2 v2UV;\n"
-          "out vec4 outputColor;\n"
-          "void main()\n"
-          "{\n"
-          "		outputColor = texture(mytexture, v2UV);\n"
-          "}\n",
-          {},
-          companionWindowProgramID);
+      //    // fragment shader
+      //    "#version 410 core\n"
+      //    "uniform sampler2D mytexture;\n"
+      //    "noperspective in vec2 v2UV;\n"
+      //    "out vec4 outputColor;\n"
+      //    "void main()\n"
+      //    "{\n"
+      //    "		outputColor = texture(mytexture, v2UV);\n"
+      //    "}\n",
+      //    {},
+      //    companionWindowProgramID);
     }
 
     IGL_INLINE void VRApplication::drawControllerAxes(Eigen::Matrix4f view, Eigen::Matrix4f proj)
     {
-      if (!hmd->IsInputAvailable())
         return;
+      //if (!hmd->IsInputAvailable())
+      //  return;
 
-      glEnable(GL_DEPTH_TEST);
+      //glEnable(GL_DEPTH_TEST);
 
-      // draw the controller axis lines
-      glUseProgram(controllerTransformProgramID);
+      //// draw the controller axis lines
+      //glUseProgram(controllerTransformProgramID);
 
-      // Send transformations to the GPU
-      GLint viewi = glGetUniformLocation(controllerTransformProgramID, "view");
-      GLint proji = glGetUniformLocation(controllerTransformProgramID, "proj");
-      glUniformMatrix4fv(viewi, 1, GL_FALSE, view.data());
-      glUniformMatrix4fv(proji, 1, GL_FALSE, proj.data());
+      //// Send transformations to the GPU
+      //GLint viewi = glGetUniformLocation(controllerTransformProgramID, "view");
+      //GLint proji = glGetUniformLocation(controllerTransformProgramID, "proj");
+      //glUniformMatrix4fv(viewi, 1, GL_FALSE, view.data());
+      //glUniformMatrix4fv(proji, 1, GL_FALSE, proj.data());
 
-      //glUniformMatrix4fv(controllerMatrixLocation, 1, GL_FALSE, viewProjectionMatrix.data());
-      glBindVertexArray(controllerVAO);
-      glDrawArrays(GL_LINES, 0, controllerVertCount);
-      glBindVertexArray(0);
+      ////glUniformMatrix4fv(controllerMatrixLocation, 1, GL_FALSE, viewProjectionMatrix.data());
+      //glBindVertexArray(controllerVAO);
+      //glDrawArrays(GL_LINES, 0, controllerVertCount);
+      //glBindVertexArray(0);
 
-      glUseProgram(0);
+      //glUseProgram(0);
     }
 
     IGL_INLINE void VRApplication::renderControllerAxes()
     {
-      if (!hmd->IsInputAvailable())
         return;
+      //if (!hmd->IsInputAvailable())
+      //  return;
 
-      std::vector<float> vertdataarray;
+      //std::vector<float> vertdataarray;
 
-      controllerVertCount = 0;
-      trackedControllerCount = 0;
+      //controllerVertCount = 0;
+      //trackedControllerCount = 0;
 
-      for (EHand eHand = Left; eHand <= Right; ((int &)eHand)++)
-      {
-        if (!m_rHand[eHand].m_bShowController)
-          continue;
+      //for (EHand eHand = Left; eHand <= Right; ((int &)eHand)++)
+      //{
+      //  if (!m_rHand[eHand].m_bShowController)
+      //    continue;
 
-        Eigen::Matrix4f &mat = m_rHand[eHand].m_rmat4Pose;
-        Eigen::Vector4f center = mat * Eigen::Vector4f(0, 0, 0, 1);
+      //  Eigen::Matrix4f &mat = m_rHand[eHand].m_rmat4Pose;
+      //  Eigen::Vector4f center = mat * Eigen::Vector4f(0, 0, 0, 1);
 
-        for (int i = 0; i < 3; ++i)
-        {
-          Eigen::Vector3f color(0, 0, 0);
-          Eigen::Vector4f point(0, 0, 0, 1);
-          point(i) += 0.05f;
-          color(i) = 1.0;
-          point = mat * point;
-          vertdataarray.push_back(center(0));
-          vertdataarray.push_back(center(1));
-          vertdataarray.push_back(center(2));
+      //  for (int i = 0; i < 3; ++i)
+      //  {
+      //    Eigen::Vector3f color(0, 0, 0);
+      //    Eigen::Vector4f point(0, 0, 0, 1);
+      //    point(i) += 0.05f;
+      //    color(i) = 1.0;
+      //    point = mat * point;
+      //    vertdataarray.push_back(center(0));
+      //    vertdataarray.push_back(center(1));
+      //    vertdataarray.push_back(center(2));
 
-          vertdataarray.push_back(color(0));
-          vertdataarray.push_back(color(1));
-          vertdataarray.push_back(color(2));
+      //    vertdataarray.push_back(color(0));
+      //    vertdataarray.push_back(color(1));
+      //    vertdataarray.push_back(color(2));
 
-          vertdataarray.push_back(point(0));
-          vertdataarray.push_back(point(1));
-          vertdataarray.push_back(point(2));
+      //    vertdataarray.push_back(point(0));
+      //    vertdataarray.push_back(point(1));
+      //    vertdataarray.push_back(point(2));
 
-          vertdataarray.push_back(color(0));
-          vertdataarray.push_back(color(1));
-          vertdataarray.push_back(color(2));
+      //    vertdataarray.push_back(color(0));
+      //    vertdataarray.push_back(color(1));
+      //    vertdataarray.push_back(color(2));
 
-          controllerVertCount += 2;
-        }
-        Eigen::Vector4f start = mat * Eigen::Vector4f(0, 0, -0.02f, 1);
-        Eigen::Vector4f end = mat * Eigen::Vector4f(0, 0, -39.f, 1);
-        Eigen::Vector3f color(.92f, .92f, .71f);
-        vertdataarray.push_back(start(0));
-        vertdataarray.push_back(start(1));
-        vertdataarray.push_back(start(2));
-        vertdataarray.push_back(color(0));
-        vertdataarray.push_back(color(1));
-        vertdataarray.push_back(color(2));
+      //    controllerVertCount += 2;
+      //  }
+      //  Eigen::Vector4f start = mat * Eigen::Vector4f(0, 0, -0.02f, 1);
+      //  Eigen::Vector4f end = mat * Eigen::Vector4f(0, 0, -39.f, 1);
+      //  Eigen::Vector3f color(.92f, .92f, .71f);
+      //  vertdataarray.push_back(start(0));
+      //  vertdataarray.push_back(start(1));
+      //  vertdataarray.push_back(start(2));
+      //  vertdataarray.push_back(color(0));
+      //  vertdataarray.push_back(color(1));
+      //  vertdataarray.push_back(color(2));
 
-        vertdataarray.push_back(end(0));
-        vertdataarray.push_back(end(1));
-        vertdataarray.push_back(end(2));
-        vertdataarray.push_back(color(0));
-        vertdataarray.push_back(color(1));
-        vertdataarray.push_back(color(2));
-        controllerVertCount += 2;
-      }
+      //  vertdataarray.push_back(end(0));
+      //  vertdataarray.push_back(end(1));
+      //  vertdataarray.push_back(end(2));
+      //  vertdataarray.push_back(color(0));
+      //  vertdataarray.push_back(color(1));
+      //  vertdataarray.push_back(color(2));
+      //  controllerVertCount += 2;
+      //}
 
-      // Setup the VAO the first time through.
-      if (controllerVAO == 0)
-      {
-        glGenVertexArrays(1, &controllerVAO);
-        glBindVertexArray(controllerVAO);
+      //// Setup the VAO the first time through.
+      //if (controllerVAO == 0)
+      //{
+      //  glGenVertexArrays(1, &controllerVAO);
+      //  glBindVertexArray(controllerVAO);
 
-        glGenBuffers(1, &controllerVertBuffer);
-        glBindBuffer(GL_ARRAY_BUFFER, controllerVertBuffer);
+      //  glGenBuffers(1, &controllerVertBuffer);
+      //  glBindBuffer(GL_ARRAY_BUFFER, controllerVertBuffer);
 
-        GLuint stride = 2 * 3 * sizeof(float);
-        uintptr_t offset = 0;
+      //  GLuint stride = 2 * 3 * sizeof(float);
+      //  uintptr_t offset = 0;
 
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, (const void *)offset);
+      //  glEnableVertexAttribArray(0);
+      //  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, (const void *)offset);
 
-        offset += sizeof(Eigen::Vector3f);
-        glEnableVertexAttribArray(1);
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride, (const void *)offset);
+      //  offset += sizeof(Eigen::Vector3f);
+      //  glEnableVertexAttribArray(1);
+      //  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride, (const void *)offset);
 
-        glBindVertexArray(0);
-      }
+      //  glBindVertexArray(0);
+      //}
 
-      glBindBuffer(GL_ARRAY_BUFFER, controllerVertBuffer);
+      //glBindBuffer(GL_ARRAY_BUFFER, controllerVertBuffer);
 
-      // set vertex data if we have some
-      if (vertdataarray.size() > 0)
-      {
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertdataarray.size(), &vertdataarray[0], GL_STREAM_DRAW);
-      }
+      //// set vertex data if we have some
+      //if (vertdataarray.size() > 0)
+      //{
+      //  glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertdataarray.size(), &vertdataarray[0], GL_STREAM_DRAW);
+      //}
     }
 
     IGL_INLINE void VRApplication::handleInput()
